@@ -16,9 +16,13 @@ import {
   IonLabel,
   IonRow,
   IonCol,
+  IonFab,
+  IonFabButton,
+  IonIcon,
   IonGrid,
 } from "@ionic/react";
 import "@ionic/core/css/ionic.bundle.css";
+import {playOutline, pauseOutline, refreshOutline} from "ionicons/icons";
 
 function Timer(props){
 
@@ -83,10 +87,21 @@ function Timer(props){
     return(
         <>
         {/* Ternary Operator Inserts Leading Zero For Timer */}
-        <p color="dark" style={{ color: "black", fontSize: 90, fontWeight: 600, textAlign: "center"}}>{mins}:{secs < 10 ? "0": null}{secs} </p> 
-        <button onClick={() => setIsRunning(false)}> Pause</button>
-        <button onClick={() => setIsRunning(true)}> Play</button>
-        <button onClick={() => reset()}> Reset</button>
+        <p color="dark" style={{ color: "black", fontSize: 90, fontWeight: 600, textAlign: "center", paddingBottom:50}}>{mins}:{secs < 10 ? "0": null}{secs} </p> 
+        <IonFab vertical="bottom" horizontal="center" slot="fixed">
+            <IonRow>
+                <IonCol>
+                    <IonFabButton color="dark"  onClick={() => setIsRunning(!isRunning)}>
+                        <IonIcon icon={!isRunning ? playOutline :  pauseOutline}/>
+                    </IonFabButton>
+                </IonCol>
+                <IonCol>
+                    <IonFabButton color="dark"  onClick={() => reset()}>
+                        <IonIcon icon={refreshOutline}/>
+                    </IonFabButton>
+                </IonCol>
+            </IonRow>
+        </IonFab>
         </>
     )
 

@@ -43,7 +43,7 @@ function Home(props) {
               <IonCardContent>
                 <Timer />
               </IonCardContent>
-              <IonButton color="dark" class="center">Start Pomodoro</IonButton>
+              {/* <IonButton color="dark" class="center">Start Pomodoro</IonButton> */}
             </IonCard>
           </IonCol>
         </IonRow>
