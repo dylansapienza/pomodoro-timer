@@ -21,10 +21,14 @@ import {
   IonIcon,
   IonGrid,
 } from "@ionic/react";
+import {Howl, Howler} from "howler";
 import "@ionic/core/css/ionic.bundle.css";
 import {playOutline, pauseOutline, refreshOutline} from "ionicons/icons";
 
 function Timer(props){
+
+    //Audio Clip
+    const alarm_sound = new Howl({ src: ["./sounds/pomodoro_alarm.mp3"] });
 
     //State Variables
 
@@ -54,6 +58,7 @@ function Timer(props){
 
     if(mins < 0){
         console.log("BEEP BEEP");
+        alarm_sound.play();
         setCycles(cycles + 1)
         setMins(0)
         setSecs(5)
