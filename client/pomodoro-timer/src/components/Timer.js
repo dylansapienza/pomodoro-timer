@@ -27,7 +27,12 @@ function Timer(props){
     const [isRunning, setIsRunning] = useState(false)
     const [cycles, setCycles] = useState(0)
 
-
+    function reset(){
+        setCycles(0)
+        setMins(25)
+        setSecs(0)
+        setIsRunning(false)
+    }
 
     if(secs < 0){
         setSecs(59)
@@ -74,6 +79,7 @@ function Timer(props){
         <p color="dark" style={{ color: "black", fontSize: 90, fontWeight: 600, textAlign: "center"}}>{mins}:{secs}</p>
         <button onClick={() => setIsRunning(false)}> Pause</button>
         <button onClick={() => setIsRunning(true)}> Play</button>
+        <button onClick={() => reset()}> Reset</button>
         </>
     )
 
