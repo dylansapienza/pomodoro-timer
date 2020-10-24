@@ -36,15 +36,7 @@ function Home(props) {
       <IonGrid>
         <IonRow>
           <IonCol>
-            <IonCard color="danger">
-              <IonCardTitle>
-              <p color="dark" style={{ color: "black", fontSize: 20, fontWeight: 600, textAlign: "center"}}>Timer</p>
-              </IonCardTitle>
-              <IonCardContent>
-                <Timer />
-              </IonCardContent>
-              {/* <IonButton color="dark" class="center">Start Pomodoro</IonButton> */}
-            </IonCard>
+            <Timer />
           </IonCol>
         </IonRow>
       </IonGrid>
