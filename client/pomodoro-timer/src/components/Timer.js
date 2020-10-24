@@ -32,8 +32,8 @@ function Timer(props){
 
     //State Variables
 
-    const [mins, setMins] = useState(0);
-    const [secs, setSecs] = useState(5);
+    const [mins, setMins] = useState(25);
+    const [secs, setSecs] = useState(0);
     const [isRunning, setIsRunning] = useState(false)
     const [cycles, setCycles] = useState(0)
 
@@ -60,17 +60,17 @@ function Timer(props){
         console.log("BEEP BEEP");
         alarm_sound.play();
         setCycles(cycles + 1)
-        setMins(0)
-        setSecs(5)
+        setMins(25)
+        setSecs(0)
         setIsRunning(false)
         if (cycles % 2 == 0){
-            setMins(0)
-            setSecs(10)
+            setMins(5)
+            setSecs(0)
             setIsRunning(true)
         }
         if (cycles % 4 == 0 && cycles != 0){
-            setMins(0)
-            setSecs(20)
+            setMins(15)
+            setSecs(0)
             setIsRunning(true)
         }
         else{
