@@ -32,17 +32,18 @@ function Timer(props){
 
     //State Variables
 
-    const [mins, setMins] = useState(0);
-    const [secs, setSecs] = useState(5);
+    const [mins, setMins] = useState(25);
+    const [secs, setSecs] = useState(0);
     const [isRunning, setIsRunning] = useState(false)
     const [cycles, setCycles] = useState(0)
     const [cardColor, setCardColor] = useState("medium")
+    
 
     //Reset Button - Sets to Pomodoro, 0 Cycles and Pauses
 
     function reset(){
-        setCycles(1)
-        setMins(1)
+        setCycles(0)
+        setMins(25)
         setSecs(0)
         setIsRunning(false)
     }
@@ -58,54 +59,50 @@ function Timer(props){
     //Depending on cycle count, set time and begin running
 
     if(mins < 0){
-        setMins(0)
-        console.log("BEEP BEEP");
+        alarm_sound.pause()
         alarm_sound.play();
         setCycles(cycles + 1)
-        setSecs(5)
         if (cycles % 2 == 0){
-            setMins(0)
-            setSecs(10)
+            setMins(5)
+            setSecs(0)
             setIsRunning(true)
-            updateColor()
+            // updateColor()
         }
         if (cycles % 4 == 0 && cycles != 0){
-            setMins(0)
-            setSecs(12)
+            setMins(15)
+            setSecs(0)
             setIsRunning(true)
-            updateColor()
+            // updateColor()
         }
         else{
             setIsRunning(true)
-            updateColor()
+            // updateColor()
         }
         
     }
 
     //Card Color Management
-    function updateColor(){
-        //isRunning Check
-        console.log("CHECKING CYCLES")
-        console.log(cycles)
-        if(cycles % 2 == 0){
-            console.log("primary")
-            
-            setCardColor("primary")
-        }else{    
-            setCardColor("danger")
-        }
+    // function updateColor(){
+    //     //isRunning Check
+    //     console.log(cycles)
+    //     if(cycles % 2 == 0){
+    //         setCardColor("primary")
+    //     }else{    
+    //         setCardColor("danger")
+    //     }
         
-    }
+    // }
 
     function playPause(){
         setIsRunning(!isRunning)
-        updateColor();
+        //updateColor();
     }
 
     //Countdown Tick-Tock
     useEffect(() => {
         if (isRunning){
             const id = window.setInterval(()=>{
+            setCardColor("danger")
             setSecs(secs => secs - 1)
         }, 1000);
             return () => {window.clearInterval(id); setCardColor("medium")};
@@ -117,7 +114,7 @@ function Timer(props){
         {/* Ternary Operator Inserts Leading Zero For Timer */}
         <IonCard color={cardColor}>
             <IonCardTitle>
-              <p color="dark" style={{ color: "black", fontSize: 20, fontWeight: 600, textAlign: "center"}}>Timer</p>
+              <p color="dark" style={{ color: "black", fontSize: 20, fontWeight: 600, textAlign: "center"}}>Timer: Cycles: {cycles}</p>
             </IonCardTitle>
             <IonCardContent>
                 <p color="dark" style={{ color: "black", fontSize: 90, fontWeight: 600, textAlign: "center", paddingBottom:50}}>{mins}:{secs < 10 ? "0": null}{secs} </p> 
